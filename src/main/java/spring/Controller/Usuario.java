@@ -1,0 +1,12 @@
+package spring.Controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Usuario {
+    @RequestMapping("/")
+    public String prueba(){
+        return "Hola mundo";
+    }
+}
