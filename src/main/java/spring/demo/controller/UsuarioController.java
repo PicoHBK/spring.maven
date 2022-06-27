@@ -98,4 +98,12 @@ public class UsuarioController {
         //return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.searchTelefono(telefono));
         return this.usuarioService.searchTelefono(telefono);
     }
+    //
+    // BORRAR POR ID
+    //
+
+    @DeleteMapping(path = "/borrar/{id}")
+    public boolean borrarPorId(@PathVariable long id){
+        return this.usuarioService.borrarUsuario(id);
+    }
 }

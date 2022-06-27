@@ -42,4 +42,12 @@ public class UsuarioService {
     public List<UsuarioModels> searchTelefono(long telefono){
         return usuarioRepository.search(telefono);
     }
+    public boolean borrarUsuario(long id){
+        try{
+            usuarioRepository.deleteById(id);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
 }
