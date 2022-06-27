@@ -22,7 +22,21 @@ public class UsuarioModels {
     @JoinColumn(name = "idPrioridad")
     PrioridadModel idPrioridad;
 
+    @OneToOne
+    @JoinColumn(name = "idPago")
+    PagoModel idPago;
+
+
     
+
+
+    
+    public PagoModel getIdPago() {
+        return idPago;
+    }
+    public void setIdPago(PagoModel idPago) {
+        this.idPago = idPago;
+    }
     //@JsonIgnoreProperties(value = {"usuarios", "idPrioridad"})
     public PrioridadModel getIdPrioridad() {
         return idPrioridad;
