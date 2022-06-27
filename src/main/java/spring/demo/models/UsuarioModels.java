@@ -1,5 +1,8 @@
 package spring.demo.models;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "usuario")
 public class UsuarioModels {
@@ -15,8 +18,18 @@ public class UsuarioModels {
     private String username;
     @Column(unique = true, nullable = false)
     private String password;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idPrioridad")
+    PrioridadModel idPrioridad;
 
     
+    //@JsonIgnoreProperties(value = {"usuarios", "idPrioridad"})
+    public PrioridadModel getIdPrioridad() {
+        return idPrioridad;
+    }
+    public void setIdPrioridad(PrioridadModel idPrioridad) {
+        this.idPrioridad = idPrioridad;
+    }
     public long getTelefono() {
         return telefono;
     }
