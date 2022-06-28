@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import spring.demo.models.AdminModel;
 import spring.demo.models.PrioridadModel;
+import spring.demo.models.SocioModel;
 import spring.demo.models.UsuarioModels;
+import spring.demo.services.AdminService;
 import spring.demo.services.PrioridadService;
+import spring.demo.services.SocioService;
 import spring.demo.services.UsuarioService;
 
 @RestController
@@ -26,6 +30,10 @@ public class UsuarioController {
     UsuarioService usuarioService;
     @Autowired
     PrioridadService prioridadService;
+    @Autowired
+    AdminService adminService;
+    @Autowired
+    SocioService socioService;
 
    //
    // CONSIGUE TODOS LOS USUARIOS EN JSON
@@ -50,17 +58,26 @@ public class UsuarioController {
         return this.prioridadService.guardarPrioridad(prioridad);
     }
 
+    @RequestMapping("/admin")
+    public List<AdminModel> getAdmins(){
+        return adminService.getAdmins();
+    }
+
     //
    // CARGA UN USUARIO SE TIENE QUE MANDAR UN JSON
    //
     @PostMapping()
     public UsuarioModels guardarUsuario(@RequestBody UsuarioModels usuario){
-        /*PrioridadModel prioridad = new PrioridadModel();
-        prioridad.setIdPrioridad(1);
-        prioridad.setTipo("Negrom");
-        usuario.setIdPrioridad(prioridad);
-        */
+    
         return this.usuarioService.guardarUsuario(usuario);
+
+    }  
+     //
+    // CARGA UN ADMIN SE TIENE QUE MANDAR UN JSON ADMIN HEREDA DE USUARIO  
+    @PostMapping("/admin")
+    public AdminModel guardarUsuario(@RequestBody AdminModel admin){
+
+        return this.adminService.guardarAdmin(admin);
     }
     //
    // BUSQUEDA POR ID MANDANDO EL ID DESDE EL PATH DEVUELVE UN JSON
@@ -105,5 +122,17 @@ public class UsuarioController {
     @DeleteMapping(path = "/borrar/{id}")
     public boolean borrarPorId(@PathVariable long id){
         return this.usuarioService.borrarUsuario(id);
+    }
+
+    //
+    // CARGA UN SOCIO SE TIENE QUE MANDAR UN JSON ADMIN HEREDA DE USUARIO  
+    @PostMapping("/socio")
+    public SocioModel guardarUsuario(@RequestBody SocioModel socio){
+
+        return this.socioService.guardarSocio(socio);
+    }
+    @RequestMapping("/socio")
+    public List<SocioModel> getSocios(){
+        return socioService.getSocios();
     }
 }

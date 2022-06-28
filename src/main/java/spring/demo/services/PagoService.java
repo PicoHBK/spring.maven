@@ -2,8 +2,6 @@ package spring.demo.services;
 
 import java.util.List;
 
-import javax.persistence.SecondaryTable;
-import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
