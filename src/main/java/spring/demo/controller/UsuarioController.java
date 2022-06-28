@@ -22,6 +22,9 @@ import spring.demo.services.PrioridadService;
 import spring.demo.services.SocioService;
 import spring.demo.services.UsuarioService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -131,8 +134,16 @@ public class UsuarioController {
 
         return this.socioService.guardarSocio(socio);
     }
+
+    //
+    // MUESTRA TODOS LOS SOCIOS EN JSON  
     @RequestMapping("/socio")
     public List<SocioModel> getSocios(){
         return socioService.getSocios();
+    }
+
+    @GetMapping("/pageable")
+    public List<UsuarioModels> obtenerPageable(Pageable pageable){
+        return usuarioService.obtenerPorPaginacion(pageable);
     }
 }

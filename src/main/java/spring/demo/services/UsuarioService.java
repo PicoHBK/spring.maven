@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import spring.demo.models.UsuarioModels;
 import spring.demo.repository.UsuarioRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class UsuarioService {
@@ -49,5 +52,12 @@ public class UsuarioService {
         }catch(Exception e){
             return false;
         }
+    }
+    // 
+    // IMPLEMENTACION DE LA PAGINACION USA LA LIBREARIA org.springframework.data.domain.Pageable;
+    //
+    public List<UsuarioModels> obtenerPorPaginacion(Pageable pageable)
+    {
+        return usuarioRepository.findAll(pageable).getContent();
     }
 }
